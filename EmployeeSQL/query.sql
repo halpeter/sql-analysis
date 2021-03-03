@@ -1,28 +1,28 @@
 --DATA ENGINEERING 
 --Create table and import departments data
 CREATE TABLE departments (
-	dept_no VARCHAR, 
+	dept_no VARCHAR PRIMARY KEY, 
 	dept_name VARCHAR);
 	
 SELECT * FROM departments;
 
 --Create table and import dept_emp data
 CREATE TABLE dept_emp (
-	emp_no INT, 
+	emp_no INT PRIMARY KEY, 
 	dept_no VARCHAR);
 	
 SELECT * FROM dept_emp;
 
 --Create table and import dept_manager data
 CREATE TABLE dept_manager (
-	dept_no VARCHAR,
+	dept_no VARCHAR PRIMARY KEY,
 	emp_no INT);
 	
 SELECT * FROM dept_manager;
 
 --Create table and import employees data
 CREATE TABLE employees (
-	emp_no INT,
+	emp_no INT PRIMARY KEY,
 	emp_title_id VARCHAR,
 	birth_date DATE,
 	first_name VARCHAR,
@@ -34,14 +34,14 @@ SELECT * FROM employees;
 
 --Create table and import salaries data
 CREATE TABLE salaries (
-	emp_no INT,
+	emp_no INT PRIMARY KEY,
 	salary INT);
 	
 SELECT * FROM salaries;
 
 --Create table and import titles data
 CREATE TABLE titles (
-	title_id VARCHAR,
+	title_id VARCHAR PRIMARY KEY,
 	title VARCHAR);
 	
 SELECT * FROM titles;
@@ -88,7 +88,7 @@ FROM employees AS e
 SELECT first_name, last_name, sex
 FROM employees
 WHERE first_name='Hercules'
-AND last_name LIKE 'b%';
+AND last_name LIKE 'B%';
 
 --6. List all employees in the Sales department, including their employee 
 --number, last name, first name, and department name.
@@ -100,7 +100,7 @@ FROM dept_emp
 WHERE dept_no='d007';
 
 SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
-FROM employees
+FROM employees AS e
     JOIN dept_emp AS de
     ON (e.emp_no=de.emp_no)
         JOIN departments as d
@@ -110,7 +110,14 @@ FROM employees
 
 --7. List all employees in the Sales and Development departments, including 
 --their employee number, last name, first name, and department name.
-
+SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
+FROM employees AS e
+    JOIN dept_emp AS de
+    ON (e.emp_no=de.emp_no)
+        JOIN departments as d
+        ON (de.dept_no=d.dept_no)
+        WHERE dept_name='Sales'
+        OR dept_name='Development';
 
 --8. In descending order, list the frequency count of employee last names, 
 --i.e., how many employees share each last name.
