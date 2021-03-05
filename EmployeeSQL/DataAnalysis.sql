@@ -1,10 +1,6 @@
 --DATA ANALYSIS
 --1. List the following details of each employee: employee number, 
 --last name, first name, sex, and salary.
-SELECT * FROM employees;
-SELECT * FROM salaries;
-
---join employees and salaries tables
 SELECT e.emp_no, e.last_name, e.first_name, e.sex, s.salary
 FROM employees AS e
 INNER JOIN salaries AS s ON
@@ -14,7 +10,7 @@ e.emp_no=s.emp_no;
 --hired in 1986.
 SELECT first_name, last_name, hire_date
 FROM employees
-WHERE hire_date between '1996-01-01' and '1996-12-31';
+WHERE hire_date between '1986-01-01' and '1986-12-31';
 
 
 --3. List the manager of each department with the following information: 
@@ -44,13 +40,6 @@ AND last_name LIKE 'B%';
 
 --6. List all employees in the Sales department, including their employee 
 --number, last name, first name, and department name.
-SELECT dept_no, dept_name
-FROM departments
-WHERE dept_name='Sales';
-SELECT emp_no, dept_no
-FROM dept_emp
-WHERE dept_no='d007';
-
 SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
 FROM employees AS e
     JOIN dept_emp AS de
