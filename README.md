@@ -1,4 +1,4 @@
-# sql-challenge
+# SQL Analysis
 
 ## Background
 In this project, I was tasked with completing a research project on employees of a corporation from the 1980s and 1990s. All that remain of the database of employees from that period were six CSV files. For this project, I designed tables to hold the data in the CSVs, imported the CSVs into a SQL database and queried to answer questions about the data.
